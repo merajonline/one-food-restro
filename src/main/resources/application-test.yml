@@ -1,0 +1,20 @@
+
+
+spring:
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  user:
+    name: user
+    password: user
+  application:
+    name: restro
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3307/restrodbtest?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMasterDownConnections=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari.maximum-pool-size: 6

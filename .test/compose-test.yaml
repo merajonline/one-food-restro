@@ -1,0 +1,13 @@
+services:
+  mysql:
+    container_name: mysql-1-test
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=restrodbtest'
+      - 'MYSQL_ROOT_PASSWORD=root'
+      - 'MYSQL_USER=user'
+      - 'MYSQL_PASSWORD=user'
+    ports:
+      - '3307:3307'
+    command: --port 3307
+    restart: always
