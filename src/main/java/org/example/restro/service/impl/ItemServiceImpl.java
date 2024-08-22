@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 
-import static org.example.restro.exception.CommonApiResultCode.INVALID_ITEM_ID;
+import static org.example.restro.exception.CommonApiResultCode.*;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +22,12 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item addItem(Item item) {
+        if (Objects.isNull(item)) {
+            throw new BixException(INVALID_ITEM);
+        }
+        long currentTime = System.currentTimeMillis();
+        item.setCreatedDate(currentTime);
+        item.setUpdatedDate(currentTime);
         return itemRepository.save(item);
     }
 

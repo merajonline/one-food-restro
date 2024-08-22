@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
-import static org.example.restro.exception.CommonApiResultCode.INVALID_RESTRO_ID;
+import static org.example.restro.exception.CommonApiResultCode.*;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +21,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant addRestaurant(Restaurant restaurant) {
+        if (Objects.isNull(restaurant)) {
+            throw new BixException(INVALID_RESRTAURANT);
+        }
+        long currentTime = System.currentTimeMillis();
+        restaurant.setCreatedDate(currentTime);
+        restaurant.setUpdatedDate(currentTime);
         return restaurantRepository.save(restaurant);
     }
 

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 
-import static org.example.restro.exception.CommonApiResultCode.INVALID_DISH_ID;
+import static org.example.restro.exception.CommonApiResultCode.*;
 
 @RequiredArgsConstructor
 @Service
@@ -23,6 +23,12 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public Dish addDish(Dish dish) {
+        if (Objects.isNull(dish)) {
+            throw new BixException(INVALID_DISH);
+        }
+        long currentTime = System.currentTimeMillis();
+        dish.setCreatedDate(currentTime);
+        dish.setUpdatedDate(currentTime);
         return dishRepository.save(dish);
     }
 
